@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "github-oauth2"
+description = "GitHub OAuth2 client for Python"
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.8"
+license = { file = "LICENSE", content-type = "text/plain" }
+authors = [{ name = "STACiA", email = "stacia.dev@gmail.com" }]
+classifiers = [
+    'License :: OSI Approved :: MIT License',
+    'Intended Audience :: Developers',
+    'Natural Language :: English',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+]
+dynamic = ["version", "dependencies"]
+
+[project.urls]
+homepage = "https://github.com/staciax/github-oauth2"
+repository = "https://github.com/staciax/github-oauth2"
+issues = "https://github.com/staciax/github-oauth2/issues"
+
+[tool.setuptools.dynamic]
+dependencies = { file = "requirements.txt" }
+
+[tool.pyright]
+include = ["github_oauth2"]
+exclude = ["**/__pycache__", "build", "dist"]
+pythonVersion = "3.8"
+typeCheckingMode = "basic"
+reportUnnecessaryTypeIgnoreComment = "warning"
+reportMissingParameterType = "error"
+reportMissingTypeArgument = "error"
+reportUnusedVariable = "warning"
+
+[tool.ruff]
+line-length = 120
+target-version = "py38"
+exclude = [".git", ".pytest_cache", ".ruff_cache", ".venv"]
+
+[tool.ruff.lint]
+preview = true
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "UP", # pyupgrade,
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+]
+ignore = [
+    "E501", # line-too-long
+]
+
+[tool.ruff.format]
+quote-style = "single"
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.pyupgrade]
+# Preserve types, even if a file imports `from __future__ import annotations`.
+keep-runtime-typing = true
